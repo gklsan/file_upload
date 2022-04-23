@@ -3,11 +3,12 @@ class UploadersController < ApplicationController
 
   # GET /uploaders or /uploaders.json
   def index
-    @uploaders = Uploader.all
+    @uploaders = Uploader.where(user: current_user)
   end
 
   # GET /uploaders/1 or /uploaders/1.json
   def show
+    redirect_to root_path unless @uploader
   end
 
   # GET /uploaders/new
@@ -64,13 +65,14 @@ class UploadersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_uploader
-      @uploader = Uploader.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def uploader_params
-      params.require(:uploader).permit(:title, :description, files: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_uploader
+    @uploader = Uploader.find_by(id: params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def uploader_params
+    params.require(:uploader).permit(:title, :description, :user_id, files: [])
+  end
 end
