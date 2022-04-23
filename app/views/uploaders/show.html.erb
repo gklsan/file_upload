@@ -4,6 +4,7 @@
   Attachments:
   <% files.each do |file| %>
     <%= link_to file.filename, rails_blob_path(file, disposition: :inline) %>
+    <div><strong>Link to share:</strong><%= rails_blob_url(file, disposition: :inline, expires_in: 50.seconds) %></div>
     <%= button_to 'Remove', delete_file_uploader_path(file.id), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
@@ -12,5 +13,5 @@
   <%= link_to "Edit this uploader", edit_uploader_path(@uploader) %> |
   <%= link_to "Back to uploaders", uploaders_path %>
 
-  <%= button_to "Destroy this uploader", @uploader, 'data-turbo-method': :delete %>
+  <%= link_to "Destroy this uploader", @uploader, 'data-turbo-method': :delete %>
 </div>
