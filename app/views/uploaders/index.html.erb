@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Uploaders</h1>
+
+<div id="uploaders">
+  <% @uploaders.each do |uploader| %>
+    <%= render uploader %>
+    <% uploader.files.each do |file| %>
+      <%= link_to file.filename, rails_blob_path(file, disposition: :inline) %>
+    <% end %>
+
+    <p>
+      <%= link_to "Show this uploader", uploader %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New uploader", new_uploader_path %>

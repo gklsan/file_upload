@@ -1,0 +1,32 @@
+<%= form_with(model: uploader) do |form| %>
+  <% if uploader.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(uploader.errors.count, "error") %> prohibited this uploader from being saved:</h2>
+
+      <ul>
+        <% uploader.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :files %>
+    <%= form.file_field :files, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
