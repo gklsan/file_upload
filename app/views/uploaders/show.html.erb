@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @uploader %>
 <% files = @uploader.files %>
 <% if files.any? %>
@@ -14,5 +12,5 @@
   <%= link_to "Edit this uploader", edit_uploader_path(@uploader) %> |
   <%= link_to "Back to uploaders", uploaders_path %>
 
-  <%= button_to "Destroy this uploader", @uploader, method: :delete %>
+  <%= button_to "Destroy this uploader", @uploader, 'data-turbo-method': :delete %>
 </div>
