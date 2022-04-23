@@ -5,6 +5,7 @@
   <% files.each do |file| %>
     <%= link_to file.filename, rails_blob_path(file, disposition: :inline) %>
     <div><strong>Link to share:</strong><%= rails_blob_url(file, disposition: :inline, expires_in: 50.seconds) %></div>
+    <p>#TODO: *This URL will be replaced with slug.</p>
     <%= button_to 'Remove', delete_file_uploader_path(file.id), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
